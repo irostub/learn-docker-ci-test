@@ -20,3 +20,16 @@ after_success:
   - docker push irostub/docker-frontend
   - docker push irostub/docker-backend
   - docker push irostub/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "docker-f-app"
+  env: "Dockerfapp"
+  bucket_name: elasticbeanstalk-ap-northeast-2-618857503620
+  bucket_path: "docker-f-app"
+  on:
+    branch: master
+  
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY

@@ -1,32 +1,38 @@
 version: "3"
 services:
-  backend:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./backend
-    container_name: app_backend
-    volumes:
-      - /app/node_modules
-      - ./backend:/app
-
-  nginx:
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    container_name: app_nginx
-    ports:
-      - "3000:80"
-
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.dev
+    image: irostub/docker-frontend
     container_name: app_frontend
     volumes:
       - /app/node_modules
       - ./frontend:/app
     stdin_open: true
+    mem_limit: 128m
+
+  nginx:
+    restart: always
+    image: irostub/docker-nginx
+    container_name: app_nginx
+    ports:
+      - "80:80"
+    mem_limit: 128m
+    links:
+      - frontend
+      - backend
+
+  backend:
+    image: irostub/docker-backend
+    container_name: app_backend
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    environment:
+      MYSQL_HOST: $MYSQL_HOST
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_PORT: $MYSQL_PORT
+    mem_limit: 128m
 
   # mysql:
   #   build: ./mysql
