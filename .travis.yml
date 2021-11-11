@@ -25,7 +25,7 @@ deploy:
   provider: elasticbeanstalk
   region: "ap-northeast-2"
   app: "docker-f-app"
-  env: "Dockerfapp"
+  env: "Dockerfapp-env"
   bucket_name: elasticbeanstalk-ap-northeast-2-618857503620
   bucket_path: "docker-f-app"
   on:
