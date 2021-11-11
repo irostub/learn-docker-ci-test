@@ -5,6 +5,17 @@ const db = require("./db");
 const app = express();
 app.use(bodyParser.json());
 
+db.pool.query(
+  `CREATE TABLE lists (
+    id INTEGER AUTO_INCREMENT,
+    value TEXT, 
+    PRIMARY KEY (id)
+)`,
+  (err, results, fileds) => {
+    console.log("results", results);
+  }
+);
+
 app.get("/api/value", function (req, res) {
   db.pool.query("select * from lists;", (error, results) => {
     if (error) {
