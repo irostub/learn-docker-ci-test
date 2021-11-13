@@ -1,8 +1,6 @@
 # Docker CI 환경 테스트
 
-## [learn-docker](https://github.com/irostub/learn-docker) repository 의 [04-docker-fullstack-app](https://github.com/irostub/learn-docker/tree/master/04-docker-fullstack-app) Directory 에서 파생되었습니다.
-
-<br>
+[learn-docker](https://github.com/irostub/learn-docker) repository 의 [04-docker-fullstack-app](https://github.com/irostub/learn-docker/tree/master/04-docker-fullstack-app) Directory 에서 파생되었습니다.
 
 ## CI 환경 구성
 
